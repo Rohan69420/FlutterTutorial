@@ -41,144 +41,192 @@ class _MenuPageState extends State<MenuPage> {
           style: TextStyle(color: Colors.grey[900]),
         ),
       ),
-      body: Column(
-        children: [
-          //Scan Food
-          Container(
-            decoration: BoxDecoration(
-                color: primaryColor, borderRadius: BorderRadius.circular(20)),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            child: Row(
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            //Scan Food
+            Container(
+              decoration: BoxDecoration(
+                  color: primaryColor, borderRadius: BorderRadius.circular(20)),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+              child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    //message
+
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Scan Food',
+                          style: GoogleFonts.dmSerifDisplay(
+                            fontSize: 28,
+                            color: Colors.white,
+                          ),
+                        ),
+
+                        //spacing
+                        const SizedBox(height: 10),
+
+                        //cta button
+                        MyButton(
+                            text: "Scan",
+                            onTap: () {
+                              Navigator.pushNamed(context, '/scanpage');
+                            })
+                      ],
+                    ),
+
+                    //image
+                    Image.asset(
+                      "lib/images/ScanFood.png",
+                      height: 120,
+                    ),
+                  ]),
+            ),
+
+            //spacing between cards
+            const SizedBox(height: 25),
+
+            //Daily Record
+            Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  //message
-
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Scan Food',
+                        'Daily Record',
                         style: GoogleFonts.dmSerifDisplay(
                           fontSize: 28,
                           color: Colors.white,
                         ),
                       ),
-
-                      //spacing
-                      const SizedBox(height: 10),
-
-                      //cta button
-                      MyButton(
-                          text: "Scan",
-                          onTap: () {
-                            Navigator.pushNamed(context, '/scanpage');
-                          })
                     ],
                   ),
+                ],
+              ),
+            ),
 
-                  //image
-                  Image.asset(
-                    "lib/images/ScanFood.png",
-                    height: 120,
+            //spacing between cards
+            const SizedBox(height: 25),
+
+            //Your Streak
+            Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Your Streak',
+                        style: GoogleFonts.dmSerifDisplay(
+                          fontSize: 28,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ],
                   ),
-                ]),
-          ),
-
-          //spacing between cards
-          const SizedBox(height: 25),
-
-          //Daily Record
-          Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(20),
+                ],
+              ),
             ),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Daily Record',
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 28,
-                        color: Colors.white,
+
+            //spacing between cards
+            const SizedBox(height: 25),
+
+            //Leaderboard
+            Container(
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Leaderboard',
+                        style: GoogleFonts.dmSerifDisplay(
+                          fontSize: 28,
+                          color: Colors.white,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            
+            //spacing between cards
+            const SizedBox(height: 25),
+
+            Container(
+              height: 300,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 0),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: top3.length,
+                  itemBuilder: ((context, index) => LeaderboardWidget(
+                        player: top3[index],
+                      )),
                 ),
-              ],
+              ),
             ),
-          ),
 
-          //spacing between cards
-          const SizedBox(height: 25),
+            //spacing between cards
+            const SizedBox(height: 25),
 
-          //Your Streak
-          Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(20),
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
             ),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Your Streak',
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 28,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-          ),
 
-          //spacing between cards
-          const SizedBox(height: 25),
+            //spacing between cards
+            const SizedBox(height: 25),
 
-          //Leaderboard
-          Container(
-            decoration: BoxDecoration(
-              color: primaryColor,
-              borderRadius: BorderRadius.circular(20),
+            Container(
+              height: 100,
+              decoration: BoxDecoration(
+                color: primaryColor,
+                borderRadius: BorderRadius.circular(20),
+              ),
+              margin: const EdgeInsets.symmetric(horizontal: 25),
+              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
             ),
-            margin: const EdgeInsets.symmetric(horizontal: 25),
-            padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Leaderboard',
-                      style: GoogleFonts.dmSerifDisplay(
-                        fontSize: 28,
-                        color: Colors.white,
-                      ),
-                    ),
-                    
-                   
-                  ],
-                  
-                ),
-              ],
-            ),
-          ),
 
-        ],
+          ],
+        ),
       ),
     );
   }

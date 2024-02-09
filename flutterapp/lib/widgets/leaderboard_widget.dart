@@ -15,7 +15,7 @@ class LeaderboardWidget extends StatelessWidget {
         color: Colors.grey[100],
         borderRadius: BorderRadius.circular(20), 
       ),
-      margin: const EdgeInsets.only(left: 25.0),
+      margin: const EdgeInsets.symmetric(horizontal: 10.0),
       padding: const EdgeInsets.all(25),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +29,7 @@ class LeaderboardWidget extends StatelessWidget {
         //needed icons in here but ok
         //rank
         Text(
-          "Rank""${player.rank}",
+          "Rank ""${player.rank}",
           style: GoogleFonts.dmSerifDisplay(fontSize: 20),
         ),
 
