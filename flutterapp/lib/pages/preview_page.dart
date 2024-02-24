@@ -32,7 +32,6 @@ class PreviewPage extends StatelessWidget {
                 String uniqueFileName =
                     DateTime.now().microsecondsSinceEpoch.toString();
 
-                //get a reference to the storage root
                 Reference referenceRoot = FirebaseStorage.instance.ref();
                 Reference referenceDirImages = referenceRoot.child('images');
 
@@ -42,8 +41,8 @@ class PreviewPage extends StatelessWidget {
 
                 //handle error/success
                 try {
-                  //store the file
-                  await referenceImageToUpload.putFile(File(picture!.path));
+                  //store the file with settable metadata
+                  await referenceImageToUpload.putFile(File(picture!.path), SettableMetadata(contentType: 'image/jpeg'));
                   //success by getting download url
                   //referenceImageToUpload.getDownloadURL();
                 } catch (error) {
