@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "190488372691",
+    "project_id": "gamifit69420",
+    "storage_bucket": "gamifit69420.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:190488372691:android:e2d0274fdaab6f0eab3b26",
+        "android_client_info": {
+          "package_name": "com.example.flutterapp"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCVrba4USFkfV77_01ARCQEJ4nctQ6KNkk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

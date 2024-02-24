@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutterapp/components/button.dart';
 import 'package:flutterapp/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:flutterapp/widgets/bottom_nav_widget.dart';
 import 'package:flutterapp/models/player.dart';
 import 'package:flutterapp/widgets/leaderboard_widget.dart';
+import 'package:flutter/cupertino.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -110,7 +110,19 @@ class _MenuPageState extends State<MenuPage> {
                           color: Colors.white,
                         ),
                       ),
+                      const SizedBox(height: 10),
+                      MyButton(
+                          text: "History",
+                          onTap: () {
+                            Navigator.pushNamed(context, '/calendarpage');
+                          }),
                     ],
+                  ),
+
+                  //image
+                  Image.asset(
+                    "lib/images/checkIcon.png",
+                    height: 120,
                   ),
                 ],
               ),
@@ -142,6 +154,7 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ],
                   ),
+                  const Icon(CupertinoIcons.flame),
                 ],
               ),
             ),
@@ -151,80 +164,44 @@ class _MenuPageState extends State<MenuPage> {
 
             //Leaderboard
             Container(
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Leaderboard',
-                        style: GoogleFonts.dmSerifDisplay(
-                          fontSize: 28,
-                          color: Colors.white,
+                decoration: BoxDecoration(
+                  color: primaryColor,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                margin: const EdgeInsets.symmetric(horizontal: 25),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
+                child: Column(
+                  children: [
+                    Text(
+                      'Leaderboard',
+                      style: GoogleFonts.dmSerifDisplay(
+                        fontSize: 28,
+                        color: Colors.white,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Container(
+                      height: 250,
+                      // margin: const EdgeInsets.symmetric(horizontal: 25),
+                      // padding: const EdgeInsets.symmetric(
+                      //     vertical: 25, horizontal: 0),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: top3.length,
+                          itemBuilder: ((context, index) => LeaderboardWidget(
+                                player: top3[index],
+                              )),
                         ),
                       ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            
-            //spacing between cards
-            const SizedBox(height: 25),
-
-            Container(
-              height: 300,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 0),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                child: ListView.builder(
-                  scrollDirection: Axis.horizontal,
-                  itemCount: top3.length,
-                  itemBuilder: ((context, index) => LeaderboardWidget(
-                        player: top3[index],
-                      )),
-                ),
-              ),
-            ),
+                    ),
+                  ],
+                )),
 
             //spacing between cards
             const SizedBox(height: 25),
-
-            Container(
-              height: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            ),
-
-            //spacing between cards
-            const SizedBox(height: 25),
-
-            Container(
-              height: 100,
-              decoration: BoxDecoration(
-                color: primaryColor,
-                borderRadius: BorderRadius.circular(20),
-              ),
-              margin: const EdgeInsets.symmetric(horizontal: 25),
-              padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
-            ),
-
           ],
         ),
       ),
