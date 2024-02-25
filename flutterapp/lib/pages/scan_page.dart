@@ -1,9 +1,13 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:camera/camera.dart';
 import 'package:flutterapp/pages/camera_page.dart';
+import 'package:flutterapp/pages/preview_page.dart';
+import 'package:image_picker/image_picker.dart';
 
 class ScanPage extends StatefulWidget {
-  const ScanPage({super.key});  
+  const ScanPage({super.key});
 
   @override
   State<ScanPage> createState() => _ScanPageState();
@@ -16,12 +20,35 @@ class _ScanPageState extends State<ScanPage> {
       appBar: AppBar(title: const Text("Home Page")),
       body: SafeArea(
         child: Center(
-            child: ElevatedButton(
-          onPressed: () async {
-            await availableCameras().then((value) => Navigator.push(context,
-                MaterialPageRoute(builder: (_) => CameraPage(cameras: value))));
-          },
-          child: const Text("Take a Picture"),
+            child: Column(
+          children: [
+            ElevatedButton(
+              onPressed: () async {
+                await availableCameras().then((value) => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (_) => CameraPage(cameras: value))));
+              },
+              child: const Text("Take a Picture"),
+            ),
+            ElevatedButton(
+              onPressed: () async {
+                ImagePicker imagePicker = ImagePicker();
+                XFile? picture = await imagePicker.pickImage(source: ImageSource.gallery);
+
+                if(picture!=null){
+                //forwarding this to the preview page
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => PreviewPage(
+                              picture: picture,
+                            )));
+                }
+                },
+              child: const Text("Select From Gallery"),
+            ),
+          ],
         )),
       ),
     );
