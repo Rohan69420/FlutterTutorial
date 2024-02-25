@@ -3,11 +3,13 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutterapp/pages/post_scan.dart';
 
 class PreviewPage extends StatelessWidget {
-  const PreviewPage({Key? key, required this.picture}) : super(key: key);
+  PreviewPage({Key? key, required this.picture}) : super(key: key);
 
   final XFile picture;
+  String imageUrl = '';
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,10 @@ class PreviewPage extends StatelessWidget {
               onPressed: () async {
                 print('Image path is here:' '${picture.path}');
 
-                if (picture == null) return;
+                if (picture == null) {
+                  print("null!");
+                  return;
+                }
 
                 String uniqueFileName =
                     DateTime.now().microsecondsSinceEpoch.toString();
@@ -42,12 +47,20 @@ class PreviewPage extends StatelessWidget {
                 //handle error/success
                 try {
                   //store the file with settable metadata
-                  await referenceImageToUpload.putFile(File(picture!.path), SettableMetadata(contentType: 'image/jpeg'));
+                  await referenceImageToUpload.putFile(File(picture.path), SettableMetadata(contentType: 'image/jpeg'));
                   //success by getting download url
-                  //referenceImageToUpload.getDownloadURL();
+                  imageUrl = await referenceImageToUpload.getDownloadURL();
                 } catch (error) {
                   //some error has occured
                 }
+
+                //push the necessary detail and transition to the results page
+                 Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostScanPage(picture: picture,imageUrl: imageUrl,),
+                      ));
+                
               },
               icon: const Icon(Icons.upload_file),
             ),
