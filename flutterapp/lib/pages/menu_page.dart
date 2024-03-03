@@ -140,7 +140,7 @@ class _MenuPageState extends State<MenuPage> {
               margin: const EdgeInsets.symmetric(horizontal: 25),
               padding: const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -154,7 +154,24 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ],
                   ),
-                  const Icon(CupertinoIcons.flame),
+                  const SizedBox(
+                    width: 30,
+                  ),
+                  Text(
+                    '12',
+                    style: GoogleFonts.dmSerifDisplay(
+                      fontSize: 42,
+                      color: Colors.white,
+                    ),
+                  ),
+                  const SizedBox(
+                    width: 10,
+                  ),
+                  const Icon(
+                    CupertinoIcons.flame,
+                    size: 50,
+                    color: Colors.redAccent,
+                  ),
                 ],
               ),
             ),
@@ -172,6 +189,7 @@ class _MenuPageState extends State<MenuPage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 25, horizontal: 30),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
                       'Leaderboard',
@@ -180,7 +198,8 @@ class _MenuPageState extends State<MenuPage> {
                         color: Colors.white,
                       ),
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 20),
+
                     Container(
                       height: 250,
                       // margin: const EdgeInsets.symmetric(horizontal: 25),

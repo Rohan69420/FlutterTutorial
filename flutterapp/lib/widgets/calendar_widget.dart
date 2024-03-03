@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 
-
 class CalendarPage extends StatefulWidget {
   const CalendarPage({super.key});
 
@@ -29,7 +28,7 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Calendar App')),
+      appBar: AppBar(title: const Text('Streaks History')),
       body: TableCalendar(
         calendarFormat: _calendarFormat,
         onFormatChanged: (format) {

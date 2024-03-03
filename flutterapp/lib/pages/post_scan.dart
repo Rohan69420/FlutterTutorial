@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'dart:io';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:http/http.dart' as http;
 
 class PostScanPage extends StatefulWidget {
@@ -33,13 +34,19 @@ class _PostScanPageState extends State<PostScanPage> {
               Text(widget.picture.name),
 
               //needs a button here to upload to firebase storage
-              Text("The Obtained Url is: '${widget.imageUrl}'"),
+              //Text("The Obtained Url is: '${widget.imageUrl}'"),
 
               const SizedBox(
                 height: 20,
               ),
 
-              Text(" '${NutritionDetails}'"),
+              Text(
+                " ${NutritionDetails}",
+                style: GoogleFonts.dmSerifDisplay(
+                  fontSize: 28,
+                  color: Colors.black,
+                ),
+              ),
 
               const SizedBox(
                 height: 20,

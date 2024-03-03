@@ -17,10 +17,11 @@ class _ScanPageState extends State<ScanPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Home Page")),
+      appBar: AppBar(title: const Text("Choose Method")),
       body: SafeArea(
         child: Center(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
           children: [
             ElevatedButton(
               onPressed: () async {
@@ -31,25 +32,30 @@ class _ScanPageState extends State<ScanPage> {
               },
               child: const Text("Take a Picture"),
             ),
+
+            const SizedBox(height:20,),
+            
             ElevatedButton(
               onPressed: () async {
                 ImagePicker imagePicker = ImagePicker();
-                XFile? picture = await imagePicker.pickImage(source: ImageSource.gallery);
+                XFile? picture =
+                    await imagePicker.pickImage(source: ImageSource.gallery);
 
-                if(picture!=null){
-                //forwarding this to the preview page
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => PreviewPage(
-                              picture: picture,
-                            )));
+                if (picture != null) {
+                  //forwarding this to the preview page
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => PreviewPage(
+                                picture: picture,
+                              )));
                 }
-                },
+              },
               child: const Text("Select From Gallery"),
             ),
           ],
-        )),
+        )
+        ),
       ),
     );
   }
