@@ -3,6 +3,7 @@ import 'package:flutterapp/components/button.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutterapp/theme/colors.dart';
 
+
 class IntroPage extends StatelessWidget {
   const IntroPage({super.key});
 
@@ -73,7 +74,7 @@ class IntroPage extends StatelessWidget {
                 text: "Get Started",
                 onTap:(){
                   //ontap go to the menu page
-                  Navigator.pushNamed(context, '/menupage');
+                  Navigator.pushNamed(context, '/widgettree');
                 }
                 ),
             ],

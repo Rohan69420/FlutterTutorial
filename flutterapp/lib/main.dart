@@ -5,6 +5,7 @@ import 'package:flutterapp/widgets/calendar_widget.dart';
 import 'pages/menu_page.dart';
 import 'pages/intro_page.dart';
 import 'pages/scan_page.dart';
+import 'package:flutterapp/components/widget_tree.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +26,7 @@ class MyApp extends StatelessWidget {
           '/menupage': (context) => const MenuPage(),
           '/scanpage': (context) => const ScanPage(),
           '/calendarpage': (context) => const CalendarPage(),
+          '/widgettree': (context) => const WidgetTree(),
         }); //
   }
 }
