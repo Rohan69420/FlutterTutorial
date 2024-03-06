@@ -1,4 +1,6 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutterapp/components/auth.dart';
@@ -30,6 +32,16 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+  //create registered user's default profile.
+  Future<void> createUserAndProfile() async {
+    createUserWithEmailAndPassword();
+
+    FirebaseFirestore.instance.collection("Users").doc(_controllerEmail.text).set({
+      'username': _controllerEmail.text.split('@')[1],
+      'bio': 'Empty Bio',
+      'score': 0
+    }).catchError((error) => print("Failed to add user: $error"));
+  }
 
   Future<void> createUserWithEmailAndPassword() async {
     try {
@@ -67,7 +79,7 @@ class _LoginPageState extends State<LoginPage> {
   Widget _submitButton() {
     return ElevatedButton(
       onPressed:
-          isLogin ? signInWithEmailAndPassword : createUserWithEmailAndPassword,
+          isLogin ? signInWithEmailAndPassword : createUserAndProfile,
       child: Text(isLogin ? 'Login' : 'Register'),
     );
   }
