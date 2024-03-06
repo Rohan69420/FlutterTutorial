@@ -28,7 +28,7 @@ class _CalendarPageState extends State<CalendarPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Streaks History')),
+      appBar: AppBar(title: const Text('Daily Record Tracker')),
       body: TableCalendar(
         calendarFormat: _calendarFormat,
         onFormatChanged: (format) {

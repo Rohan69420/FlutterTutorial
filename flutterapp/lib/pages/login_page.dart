@@ -30,6 +30,7 @@ class _LoginPageState extends State<LoginPage> {
     }
   }
 
+
   Future<void> createUserWithEmailAndPassword() async {
     try {
       await Auth().createUserWithEmailAndPassword(

@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutterapp/components/button.dart';
+import 'package:flutterapp/pages/profile_page.dart';
 import 'package:flutterapp/theme/colors.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutterapp/models/player.dart';
 import 'package:flutterapp/widgets/leaderboard_widget.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutterapp/widgets/drawer.dart';
+import 'package:flutterapp/components/auth.dart';
+import 'package:flutterapp/components/widget_tree.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -26,6 +30,23 @@ class _MenuPageState extends State<MenuPage> {
         name: "Bobo", imagePath: "lib/images/bobo.png", rank: 3, score: 920170)
   ];
 
+  void goToProfilePage() {
+    //pop menu drawer
+    //Navigator.pop(context);
+
+    //go to profile page
+    Navigator.push(context, MaterialPageRoute(
+      builder: (context) => ProfilePage()
+      ));
+  }
+
+  Future <void> onSignOut() async {
+    await Auth().signOut();
+    Navigator.pop(context);
+    Navigator.push(context, MaterialPageRoute(builder: (context) => WidgetTree()));
+  }
+  
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +54,17 @@ class _MenuPageState extends State<MenuPage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         elevation: 0,
-        leading: Icon(
-          Icons.menu,
-        ),
+        // leading: Icon(
+        //   Icons.menu,
+        // ),
         title: Text(
           'Main Menu',
           style: TextStyle(color: Colors.grey[900]),
         ),
+      ),
+      drawer: MyDrawer(
+        onProfileTap: goToProfilePage,
+        onSignOut: onSignOut,
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -199,7 +224,6 @@ class _MenuPageState extends State<MenuPage> {
                       ),
                     ),
                     const SizedBox(height: 20),
-
                     Container(
                       height: 250,
                       // margin: const EdgeInsets.symmetric(horizontal: 25),
