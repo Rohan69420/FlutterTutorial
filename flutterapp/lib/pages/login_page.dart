@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> {
     createUserWithEmailAndPassword();
 
     FirebaseFirestore.instance.collection("Users").doc(_controllerEmail.text).set({
-      'username': _controllerEmail.text.split('@')[1],
+      'username': _controllerEmail.text.split('@')[0],
       'bio': 'Empty Bio',
       'score': 0
     }).catchError((error) => print("Failed to add user: $error"));
@@ -73,7 +73,7 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _errorMessage() {
-    return Text(errorMessage == '' ? '' : 'Check this: $errorMessage');
+    return Text(errorMessage == '' ? '' : 'Warning : $errorMessage');
   }
 
   Widget _submitButton() {
