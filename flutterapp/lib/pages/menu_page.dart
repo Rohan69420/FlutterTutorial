@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutterapp/components/button.dart';
 import 'package:flutterapp/pages/profile_page.dart';
@@ -9,6 +10,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutterapp/widgets/drawer.dart';
 import 'package:flutterapp/components/auth.dart';
 import 'package:flutterapp/components/widget_tree.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class MenuPage extends StatefulWidget {
   const MenuPage({super.key});
@@ -18,34 +20,37 @@ class MenuPage extends StatefulWidget {
 }
 
 class _MenuPageState extends State<MenuPage> {
+  final userData = FirebaseFirestore.instance.collection("Users");
+  late QuerySnapshot querySnapshot;
+
   List top3 = [
     Player(
-        name: "Pookie",
-        imagePath: "lib/images/milk.png",
+        name: "Rohan",
+        imagePath: "lib/images/roimage.png",
         rank: 1,
         score: 69.420),
     Player(
-        name: "Ro", imagePath: "lib/images/mocha.png", rank: 2, score: 42.069),
+        name: "Roshni", imagePath: "lib/images/roshni.png", rank: 2, score: 42.069),
     Player(
-        name: "Bobo", imagePath: "lib/images/bobo.png", rank: 3, score: 920170)
+        name: "Player0", imagePath: "lib/images/user.png", rank: 3, score: 920170)
   ];
+
 
   void goToProfilePage() {
     //pop menu drawer
     //Navigator.pop(context);
 
     //go to profile page
-    Navigator.push(context, MaterialPageRoute(
-      builder: (context) => ProfilePage()
-      ));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => ProfilePage()));
   }
 
-  Future <void> onSignOut() async {
+  Future<void> onSignOut() async {
     await Auth().signOut();
     Navigator.pop(context);
-    Navigator.push(context, MaterialPageRoute(builder: (context) => WidgetTree()));
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => WidgetTree()));
   }
-  
 
   @override
   Widget build(BuildContext context) {
@@ -183,7 +188,7 @@ class _MenuPageState extends State<MenuPage> {
                     width: 30,
                   ),
                   Text(
-                    '12',
+                    '0',
                     style: GoogleFonts.dmSerifDisplay(
                       fontSize: 42,
                       color: Colors.white,

@@ -36,10 +36,15 @@ class _LoginPageState extends State<LoginPage> {
   Future<void> createUserAndProfile() async {
     createUserWithEmailAndPassword();
 
-    FirebaseFirestore.instance.collection("Users").doc(_controllerEmail.text).set({
+    FirebaseFirestore.instance
+        .collection("Users")
+        .doc(_controllerEmail.text)
+        .set({
       'username': _controllerEmail.text.split('@')[0],
       'bio': 'Empty Bio',
-      'score': 0
+      'score': 0,
+      'streaks': 0,
+      'daily_record': {}
     }).catchError((error) => print("Failed to add user: $error"));
   }
 
@@ -78,8 +83,7 @@ class _LoginPageState extends State<LoginPage> {
 
   Widget _submitButton() {
     return ElevatedButton(
-      onPressed:
-          isLogin ? signInWithEmailAndPassword : createUserAndProfile,
+      onPressed: isLogin ? signInWithEmailAndPassword : createUserAndProfile,
       child: Text(isLogin ? 'Login' : 'Register'),
     );
   }
